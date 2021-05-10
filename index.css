@@ -1,0 +1,23 @@
+.doc_info{
+    position: relative;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.customer_info{
+    position: relative;
+    display:flex;
+    flex-direction: column;
+    gap:2vh;
+}
+
+.window_container{
+    margin-top: 10vh;
+}
+
+.window_container label{
+    position: relative;
+    font-weight: bold;
+    font-size: 32px;
+}
