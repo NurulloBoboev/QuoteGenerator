@@ -21,3 +21,12 @@
     font-weight: bold;
     font-size: 32px;
 }
+
+.generate{
+    text-align: center;
+    margin-top: 5vh;
+    border: 2px solid black;
+    margin-left: 40%;
+    margin-right: 40%;
+    padding: 1vh;
+}
