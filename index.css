@@ -1,3 +1,6 @@
+body{
+    margin-left: 2vw;
+}
 .doc_info{
     position: relative;
     display:flex;
@@ -13,7 +16,8 @@
 }
 
 .window_container{
-    margin-top: 10vh;
+    margin-top: 2vh;
+    max-width: 30vw;
 }
 
 .window_container label{
@@ -29,4 +33,35 @@
     margin-left: 40%;
     margin-right: 40%;
     padding: 1vh;
+
+    cursor: pointer;
+}
+
+.generate:hover{
+    background:lightblue;
+    color: black;
+    border-color: lime;
+}
+.add{
+    text-align:center;
+    border: 2px solid black;
+    width:5vw;
+    margin-left: auto;
+    cursor: pointer;
+    margin-top: 1vh;
+}
+
+.add:hover{
+    background:lightblue;
+    color: black;
+    border-color: lime;
+}
+
+input[name="num1"]{
+    margin-top: 1vh;
+    width:4vw;
+}
+
+input[name="num2"]{
+    width:4vw;
 }
