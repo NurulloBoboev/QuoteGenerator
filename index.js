@@ -15,11 +15,11 @@ $(document) .ready(function(){
     
   </select>
         Size
-        <input type="number" name="num1" value="">
+        <input type="number" name="num1" value="" required>
         x
-        <input type="number" name="num2" >
+        <input type="number" name="num2" required>
         Price $
-        <input type="number" name="price" >
+        <input type="number" name="price" required>
 
         <button class="remove"> remove </button>
     </div>`;
@@ -44,16 +44,40 @@ generate.addEventListener('click', function(){
     createDoc();
 
 
+
+
 });
 
 function createDoc(){
+    var cus_name= document.querySelector('.cus_name input').value;
+    var cus_email= document.querySelector('.cus_email input').value;
+
+    var case_query = document.querySelectorAll('.casement_container .new-input');
+    var case_length = case_query.length;
+
+    console.log(case_length);
+
+
+
     var doc = {
         content:[
-            "sup guys its Thenuruljlo here"
-        ]
+
+            {text: "WINDOW QUOTE", style: "header"},
+            {text: "customer: " + cus_name, fontSize: 16},
+            {text: "email: " + cus_email, fontSize: 16}
+
+
+
+        ],
+        styles:{
+            header: {
+                fontSize: 32,
+                bold:true
+            }
+        }
     }
 
-    createPdf(doc).download("quote");
+    // createPdf(doc).download("quote");
 
 }
 
