@@ -77,7 +77,7 @@ function createDoc(){
         }
     }
 
-    // createPdf(doc).download("quote");
+    createPdf(doc).download("quote");
 
 }
 
