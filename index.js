@@ -103,7 +103,7 @@ function createDoc(){
         //price
         console.log("This is the text in child[13]:" + childs[13].value);
 
-        var child_txt = childs[1].value + "\t\t Casement \t\t" + childs[5].value+"\" x " + childs[9].value+"\""
+        var child_txt = childs[1].value + "\t\t Casement \t\t\t\t" + childs[5].value+"\" x " + childs[9].value+"\""
                         + "\t\t$" + childs[13].value + '\n';
         Casement_txt += child_txt;
         total_price += parseFloat(childs[13].value);
@@ -116,7 +116,7 @@ function createDoc(){
         windows = true;
         var childs = awn_query[i].childNodes;
 
-        var child_txt = childs[1].value + "\t\t Awning \t\t" + childs[5].value+"\" x " + childs[9].value+"\""
+        var child_txt = childs[1].value + "\t\t Awning \t\t\t\t\t " + childs[5].value+"\" x " + childs[9].value+"\""
                         + "\t\t$" + childs[13].value + '\n';
         Awning_txt += child_txt;
         total_price += parseFloat(childs[13].value);
@@ -128,7 +128,7 @@ function createDoc(){
     for( i = 0; i < singles_query.length; i++){
         windows = true;
         var childs = singles_query[i].childNodes;
-        var child_txt = childs[1].value + "\t\t Single Slider \t\t" + childs[5].value+"\" x " + childs[9].value+"\""
+        var child_txt = childs[1].value + "\t\t Single Slider \t\t\t" + childs[5].value+"\" x " + childs[9].value+"\""
                         + "\t\t$" + childs[13].value + '\n';
         Singles_txt += child_txt;
         total_price += parseFloat(childs[13].value);
@@ -140,7 +140,7 @@ function createDoc(){
     for( i = 0; i < doubles_query.length; i++){
         windows = true;
         var childs = doubles_query[i].childNodes;
-        var child_txt = childs[1].value + "\t\t Double Slider \t\t" + childs[5].value+"\" x " + childs[9].value+"\""
+        var child_txt = childs[1].value + "\t\t Double Slider \t\t  " + childs[5].value+"\" x " + childs[9].value+"\""
                         + "\t\t$" + childs[13].value + '\n';
         Doubles_txt += child_txt;
         total_price += parseFloat(childs[13].value);
@@ -152,7 +152,7 @@ function createDoc(){
     for( i = 0; i < singleh_query.length; i++){
         windows = true;
         var childs = singleh_query[i].childNodes;
-        var child_txt = childs[1].value + "\t\t Single Hung \t\t" + childs[5].value+"\" x " + childs[9].value+"\""
+        var child_txt = childs[1].value + "\t\t Single Hung \t\t\t" + childs[5].value+"\" x " + childs[9].value+"\""
                         + "\t\t$" + childs[13].value + '\n';
         Singleh_txt += child_txt;
         total_price += parseFloat(childs[13].value);
@@ -164,7 +164,7 @@ function createDoc(){
     for( i = 0; i < doubleh_query.length; i++){
         windows = true;
         var childs = doubleh_query[i].childNodes;
-        var child_txt = childs[1].value + "\t\t Double Hung \t\t" + childs[5].value+"\" x " + childs[9].value+"\""
+        var child_txt = childs[1].value + "\t\t Double Hung \t\t  " + childs[5].value+"\" x " + childs[9].value+"\""
                         + "\t\t$" + childs[13].value + '\n';
         Doubleh_txt += child_txt;
         total_price += parseFloat(childs[13].value);
