@@ -128,7 +128,7 @@ input::-webkit-inner-spin-button {
     border-radius: 8px;
     font-size: min(6.0vw, 24px);
     transition:0.2s;
-    margin-bottom: 1vh;
+    margin-bottom: 2vh;
 }
 
 .add:hover{
