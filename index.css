@@ -120,7 +120,7 @@ input::-webkit-inner-spin-button {
     text-align:center;
     margin-left: auto;
     cursor: pointer;
-    margin-top: 1vh;
+    margin-top: 2vh;
     max-width: 64px;
     background: #ff2525;
     color: white;
