@@ -26,6 +26,17 @@ body{
     font-size: 32px;
 }
 
+.door_container{
+    margin-top: 2vh;
+    max-width: 30vw;
+}
+
+.door_container label{
+    position: relative;
+    font-weight: bold;
+    font-size: 32px;
+}
+
 .generate{
     text-align: center;
     margin-top: 5vh;
