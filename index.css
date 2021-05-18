@@ -55,6 +55,7 @@ input::-webkit-inner-spin-button {
     padding: 8px;
     border-radius: 8px;
     margin-bottom: 2vh;
+    margin-top: 2vh;
 }
 
 .customer_info input{
