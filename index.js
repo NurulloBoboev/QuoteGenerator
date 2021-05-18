@@ -15,12 +15,18 @@ $(document) .ready(function(){
         <option value="Bonus Room"> Bonus Room </option>
     
     </select>
-        Size
-        <input type="number" name="num1" value="" required>
-        x
-        <input type="number" name="num2" required>
-        Price $
-        <input type="number" name="price" required>
+        <div>
+            Size
+            <input type="number" name="num1" value="" required>
+            x
+            <input type="number" name="num2" required>
+        </div>
+        
+        <div>
+            Price $
+            <input type="number" name="price" required>
+        </div>
+
 
         <button class="remove"> remove </button>
     </div>`;

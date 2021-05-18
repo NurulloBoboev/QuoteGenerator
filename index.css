@@ -1,11 +1,16 @@
 body{
     margin-left: 2vw;
 }
+
+.title{
+    font-size: min(6.0vw, 40px);
+}
 .doc_info{
     position: relative;
     display:flex;
     flex-direction: column;
     justify-content: space-around;
+    width:80vw;
 }
 
 .customer_info{
@@ -17,7 +22,7 @@ body{
 
 .window_container{
     margin-top: 2vh;
-    max-width: 30vw;
+    width:min(85vw, 750px);
 }
 
 .window_container label{
@@ -27,14 +32,24 @@ body{
 }
 
 .door_container{
-    margin-top: 2vh;
+    margin-top: 1vh;
     max-width: 30vw;
+    width:min(85vw, 750px);
 }
 
 .door_container label{
     position: relative;
     font-weight: bold;
     font-size: 32px;
+}
+
+.new-input{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: center;
+    margin-top: 1vh;
+    flex-wrap: wrap;
 }
 
 .generate{
@@ -44,7 +59,7 @@ body{
     margin-left: 40%;
     margin-right: 40%;
     padding: 1vh;
-
+    min-width: 70px;
     cursor: pointer;
 }
 
@@ -57,6 +72,7 @@ body{
     text-align:center;
     border: 2px solid black;
     width:5vw;
+    min-width: 50px;
     margin-left: auto;
     cursor: pointer;
     margin-top: 1vh;
@@ -69,10 +85,14 @@ body{
 }
 
 input[name="num1"]{
-    margin-top: 1vh;
-    width:4vw;
+    width: min(4.0vw, 16px);
+
 }
 
 input[name="num2"]{
-    width:4vw;
+    width: min(4.0vw, 16px);
+}
+
+input[name="price"]{
+    width: min(12.0vw, 64px);
 }
