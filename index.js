@@ -15,20 +15,14 @@ $(document) .ready(function(){
         <option value="Bonus Room"> Bonus Room </option>
     
     </select>
-        <div>
-            Size
-            <input type="number" name="num1" value="" required>
-            x
-            <input type="number" name="num2" required>
-        </div>
-        
-        <div>
-            Price $
-            <input type="number" name="price" required>
-        </div>
+        <label>Size</label>
+        <input type="number" name="num1" value="" required>
+        <label>x</label>
+        <input type="number" name="num2" required>
+        <label>Price $</label>
+        <input type="number" name="price" required>
 
-
-        <button class="remove"> remove </button>
+        <button class="remove"> Remove </button>
     </div>`;
 
     //door input field
@@ -40,14 +34,14 @@ $(document) .ready(function(){
         <option value="Back Door"> Back Door </option>
         <option value="Garage Door"> Garage Door </option>
     </select>
-        Size
+        <label>Size</label>
         <input type="number" name="num1" value="" required>
-        x
+        <label>x</label>
         <input type="number" name="num2" required>
-        Price $
+        <label>Price $</label>
         <input type="number" name="price" required>
 
-        <button class="remove"> remove </button>
+        <button class="remove"> Remove </button>
     </div>`;
 
     $(document).on('click','.window_container .add', function(e){
@@ -94,88 +88,111 @@ function createDoc(){
 
     var total_price = 0;
 
+    var windows = false;
+
     //loop to get all casement form information
     for( i = 0; i < case_length; i++){
+        windows = true;
         var childs = case_query[i].childNodes;
         console.log("This is the text in child[1]:" + childs[1].value);
         console.log("This is the text in child[3]:" + childs[3].value);
+        //first dimension
         console.log("This is the text in child[5]:" + childs[5].value);
-        console.log("This is the text in child[7]:" + childs[7].value);
+        //2nd dimension
+        console.log("This is the text in child[9]:" + childs[9].value);
+        //price
+        console.log("This is the text in child[13]:" + childs[13].value);
 
-        var child_txt = childs[1].value + "\t\t Casement \t\t" + childs[3].value+"\" x " + childs[5].value+"\""
-                        + "\t\t$" + childs[7].value + '\n';
+        var child_txt = childs[1].value + "\t\t Casement \t\t" + childs[5].value+"\" x " + childs[9].value+"\""
+                        + "\t\t$" + childs[13].value + '\n';
         Casement_txt += child_txt;
-        total_price += parseInt(childs[7].value);
+        total_price += parseFloat(childs[13].value);
 
     }
 
     //loop to get all awning form information
     var awn_query = document.querySelectorAll('.Awning_container .new-input');
     for( i = 0; i < awn_query.length; i++){
+        windows = true;
         var childs = awn_query[i].childNodes;
-        var child_txt = childs[1].value + "\t\t Awning \t\t" + childs[3].value+"\" x " + childs[5].value+"\""
-                        + "\t\t$" + childs[7].value + '\n';
+
+        var child_txt = childs[1].value + "\t\t Awning \t\t" + childs[5].value+"\" x " + childs[9].value+"\""
+                        + "\t\t$" + childs[13].value + '\n';
         Awning_txt += child_txt;
-        total_price += parseInt(childs[7].value);
+        total_price += parseFloat(childs[13].value);
 
     }
 
     //loop to get all Single Slider form information
     var singles_query = document.querySelectorAll('.singles_container .new-input');
     for( i = 0; i < singles_query.length; i++){
+        windows = true;
         var childs = singles_query[i].childNodes;
-        var child_txt = childs[1].value + "\t\t Single Slider \t\t" + childs[3].value+"\" x " + childs[5].value+"\""
-                        + "\t\t$" + childs[7].value + '\n';
+        var child_txt = childs[1].value + "\t\t Single Slider \t\t" + childs[5].value+"\" x " + childs[9].value+"\""
+                        + "\t\t$" + childs[13].value + '\n';
         Singles_txt += child_txt;
-        total_price += parseInt(childs[7].value);
+        total_price += parseFloat(childs[13].value);
 
     }
 
         //loop to get all Double Slider form information
     var doubles_query = document.querySelectorAll('.doubles_container .new-input');
     for( i = 0; i < doubles_query.length; i++){
+        windows = true;
         var childs = doubles_query[i].childNodes;
-        var child_txt = childs[1].value + "\t\t Double Slider \t\t" + childs[3].value+"\" x " + childs[5].value+"\""
-                        + "\t\t$" + childs[7].value + '\n';
+        var child_txt = childs[1].value + "\t\t Double Slider \t\t" + childs[5].value+"\" x " + childs[9].value+"\""
+                        + "\t\t$" + childs[13].value + '\n';
         Doubles_txt += child_txt;
-        total_price += parseInt(childs[7].value);
+        total_price += parseFloat(childs[13].value);
 
     }
 
     //loop to get all Double Slider form information
     var singleh_query = document.querySelectorAll('.singleh_container .new-input');
     for( i = 0; i < singleh_query.length; i++){
+        windows = true;
         var childs = singleh_query[i].childNodes;
-        var child_txt = childs[1].value + "\t\t Single Hung \t\t" + childs[3].value+"\" x " + childs[5].value+"\""
-                        + "\t\t$" + childs[7].value + '\n';
+        var child_txt = childs[1].value + "\t\t Single Hung \t\t" + childs[5].value+"\" x " + childs[9].value+"\""
+                        + "\t\t$" + childs[13].value + '\n';
         Singleh_txt += child_txt;
-        total_price += parseInt(childs[7].value);
+        total_price += parseFloat(childs[13].value);
 
     }
 
     //loop to get all Double Slider form information
     var doubleh_query = document.querySelectorAll('.doubleh_container .new-input');
     for( i = 0; i < doubleh_query.length; i++){
+        windows = true;
         var childs = doubleh_query[i].childNodes;
-        var child_txt = childs[1].value + "\t\t Double Hung \t\t" + childs[3].value+"\" x " + childs[5].value+"\""
-                        + "\t\t$" + childs[7].value + '\n';
+        var child_txt = childs[1].value + "\t\t Double Hung \t\t" + childs[5].value+"\" x " + childs[9].value+"\""
+                        + "\t\t$" + childs[13].value + '\n';
         Doubleh_txt += child_txt;
-        total_price += parseInt(childs[7].value);
+        total_price += parseFloat(childs[13].value);
 
     }
     //loop to get all Door form information
     var door_query = document.querySelectorAll('.doors_container .new-input');
     for( i = 0; i < door_query.length; i++){
         var childs = door_query[i].childNodes;
-        var child_txt = childs[1].value + "\t\t" + childs[3].value+"\" x " + childs[5].value+"\""
-                        + "\t\t$" + childs[7].value + '\n';
+        var child_txt = childs[1].value + "\t\t\t\t" + childs[5].value+"\" x " + childs[9].value+"\""
+                        + "\t\t$" + childs[13].value + '\n';
         Door_txt += child_txt;
-        total_price += parseInt(childs[7].value);
+        total_price += parseFloat(childs[13].value);
 
     }
 
     console.log(case_length);
     console.log(Casement_txt);
+
+    var door="";
+    var window_txt="";
+    if(door_query.length > 0){
+        door="\n\nDoors";
+    }
+
+    if(windows){
+        window_txt="\n\nWindows";
+    }
 
 
     var doc = {
@@ -187,14 +204,14 @@ function createDoc(){
             {text: "WINDOW QUOTE", style: "header"},
             {text: "customer: " + cus_name, fontSize: 16},
             {text: "email: " + cus_email, fontSize: 16},
-            {text: "\n\nWindows", style: "subheader"},
+            {text: window_txt, style: "subheader"},
             {text: Casement_txt, fontSize: 12},
             {text: Awning_txt, fontSize: 12},
             {text: Singles_txt, fontSize: 12},
             {text: Doubles_txt, fontSize: 12},
             {text: Singleh_txt, fontSize: 12},
             {text: Doubleh_txt, fontSize: 12},
-            {text: "\n\nDoors", style: "subheader"},
+            {text: door, style: "subheader"},
             {text: Door_txt, fontSize: 12},
             {text: "Total Price: $" + total_price, style: "price"}
         ],
@@ -209,7 +226,8 @@ function createDoc(){
             },
             price: {
                 fontSize:16,
-                alignment: 'right'
+                alignment: 'right',
+                bold:true
             }
 
 

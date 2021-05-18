@@ -1,11 +1,38 @@
+* {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+}
+
 body{
-    margin-left: 2vw;
+    background-color: #ffffff;
+    margin:0;
+
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
 
 .title{
     font-size: min(6.0vw, 40px);
+    position: relative;
+    width: 100%;
+    color:white;
+    background-color: #ff2525;
+    box-shadow: 0px 0px 15px 10px rgba(0, 0, 0, 0.342);
+    border:2px solid rgba(255, 255, 255, 0);
 }
+
+.title h1{
+    margin-left: 2vw;
+}
+
 .doc_info{
+    margin-left: 2vw;
+    margin-top: 2vh;
     position: relative;
     display:flex;
     flex-direction: column;
@@ -20,79 +47,157 @@ body{
     gap:2vh;
 }
 
-.window_container{
+.customer_info label{
+    font-weight: bold;
+    font-size: min(8vw,24px);
+    background: #ff2525;
+    color: white;
+    padding: 8px;
+    border-radius: 8px;
+    margin-bottom: 2vh;
+}
+
+.customer_info input{
     margin-top: 2vh;
-    width:min(85vw, 750px);
+    font-size: min(6vw,24px);
+}
+
+.window_container{
+    margin-top: 8vh;
+    width:min(85vw, 80%);
 }
 
 .window_container label{
-    position: relative;
     font-weight: bold;
-    font-size: 32px;
+    font-size: 24px;
+    background: #ff2525;
+    color: white;
+    padding: 8px;
+    border-radius: 8px;
+    margin-bottom: 2vh;
 }
 
 .door_container{
     margin-top: 1vh;
-    max-width: 30vw;
-    width:min(85vw, 750px);
+    width:min(85vw, 80%);
 }
 
 .door_container label{
-    position: relative;
     font-weight: bold;
-    font-size: 32px;
+    font-size: 24px;
+    background: #ff2525;
+    color: white;
+    padding: 8px;
+    border-radius: 8px;
+    margin-bottom: 2vh;
 }
 
 .new-input{
     display:flex;
     flex-direction: row;
-    justify-content: space-between;
-    text-align: center;
-    margin-top: 1vh;
+    gap: 10px;
+    text-align: justify;
+    
+    margin-top: 2vh;
     flex-wrap: wrap;
+
 }
 
-.generate{
-    text-align: center;
-    margin-top: 5vh;
-    border: 2px solid black;
-    margin-left: 40%;
-    margin-right: 40%;
-    padding: 1vh;
-    min-width: 70px;
-    cursor: pointer;
-}
-
-.generate:hover{
-    background:lightblue;
+.new_window_info label{
+    background: none;
     color: black;
-    border-color: lime;
 }
+
+.new-input label{
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: min(4.0vw, 20px);
+
+}
+
 .add{
     text-align:center;
-    border: 2px solid black;
-    width:5vw;
-    min-width: 50px;
     margin-left: auto;
     cursor: pointer;
     margin-top: 1vh;
+    max-width: 64px;
+    background: #ff2525;
+    color: white;
+    padding: 8px;
+    border-radius: 8px;
+    font-size: min(6.0vw, 24px);
+    transition:0.2s;
+    margin-bottom: 1vh;
 }
 
 .add:hover{
-    background:lightblue;
-    color: black;
-    border-color: lime;
+    transition:0.2s;
+    max-width: 76px;
+}
+
+.select {
+    font-size: min(4.0vw, 24px);
 }
 
 input[name="num1"]{
-    width: min(4.0vw, 16px);
+    width: min(12.0vw, 125px);
+    font-size: min(4.0vw, 24px);
 
 }
 
 input[name="num2"]{
-    width: min(4.0vw, 16px);
+    width: min(12.0vw, 125px);
+    font-size: min(4.0vw, 24px);
 }
 
 input[name="price"]{
-    width: min(12.0vw, 64px);
+    width: min(12.0vw, 125px);
+    font-size: min(4.0vw, 24px);
+}
+
+.remove{
+    background: #ff2525;
+    color: white;
+    padding: 8px;
+    border-radius: 8px;
+    font-size: min(4.0vw, 18px);
+    min-width: 80px;
+    transition:0.2s;
+    border: none;
+    transition:0.2s;
+}
+
+.remove:hover{
+    min-width: 100px;
+    transition:0.2s;
+
+}
+
+.gen_container{
+    display:flex;
+    justify-content: center;
+    background: #343a40;
+    height: 15vh;
+    padding-top: 2vh;
+    margin-top: 4vh;
+    margin-left: auto;
+}
+
+.generate{
+    text-align: center;
+    padding: 1vh;
+    max-width: 180px;
+    cursor: pointer;
+    background: #ff2525;
+    color: white;
+    border-radius: 8px;
+    font-size: min(6.0vw, 26px);
+    max-height: 8vh;
+    transition:0.2s;
+}
+
+.generate:hover{
+
+    max-width: 200px;
+    transition:0.2s;
 }
