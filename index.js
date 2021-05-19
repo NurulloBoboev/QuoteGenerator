@@ -275,7 +275,7 @@ function createDoc(){
             {text: "\n\n Doors", style: "subheader"},
             {
                 table: {
-                    widths: [200,'*', 80],
+                    widths: [210, '*', 80],
                     body: [
                         ['Location', 'Size', 'Price'],
                         [door_location, door_size, door_price]
