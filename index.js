@@ -104,6 +104,24 @@ function createDoc(){
 
     var windows = false;
 
+    var picture_query = document.querySelectorAll('.picture_container .new-input');
+    for( i = 0; i < picture_query.length; i++){
+        windows = true;
+        var childs = picture_query[i].childNodes;
+
+        // var child_txt = childs[1].value + "\t\t Awning \t\t\t\t\t " + childs[5].value+"\" x " + childs[9].value+"\""
+        //                 + "\t\t$" + childs[13].value + '\n';
+        // Awning_txt += child_txt;
+
+        window_room += "\n"+childs[1].value;
+        window_type += "\nPicture";
+        window_size += "\n"+childs[5].value+"\" x " + childs[9].value+"\"";
+        window_price += "\n$" + childs[13].value;
+
+        total_price += parseFloat(childs[13].value);
+
+    }
+
     //loop to get all casement form information
     for( i = 0; i < case_length; i++){
         windows = true;
