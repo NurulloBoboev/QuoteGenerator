@@ -86,6 +86,20 @@ function createDoc(){
     var Doubleh_txt = "\n";
     var Door_txt = "\n";
 
+
+    //Strings for each column of information for Windows
+    var window_room = "";
+    var window_type = "";
+    var window_size = "";
+    var window_price = "";
+
+    //Strings for each colun of information for Doors
+    var door_location = "";
+    var door_size = "";
+    var door_price = "";
+
+
+
     var total_price = 0;
 
     var windows = false;
@@ -105,6 +119,12 @@ function createDoc(){
 
         var child_txt = childs[1].value + "\t\t Casement \t\t\t\t" + childs[5].value+"\" x " + childs[9].value+"\""
                         + "\t\t$" + childs[13].value + '\n';
+
+        window_room += "\n"+childs[1].value;
+        window_type += "\nCasement";
+        window_size += "\n"+childs[5].value+"\" x " + childs[9].value+"\"";
+        window_price += "\n$" + childs[13].value;
+
         Casement_txt += child_txt;
         total_price += parseFloat(childs[13].value);
 
@@ -119,6 +139,12 @@ function createDoc(){
         var child_txt = childs[1].value + "\t\t Awning \t\t\t\t\t " + childs[5].value+"\" x " + childs[9].value+"\""
                         + "\t\t$" + childs[13].value + '\n';
         Awning_txt += child_txt;
+
+        window_room += "\n"+childs[1].value;
+        window_type += "\nAwning";
+        window_size += "\n"+childs[5].value+"\" x " + childs[9].value+"\"";
+        window_price += "\n$" + childs[13].value;
+
         total_price += parseFloat(childs[13].value);
 
     }
@@ -131,6 +157,11 @@ function createDoc(){
         var child_txt = childs[1].value + "\t\t Single Slider \t\t\t" + childs[5].value+"\" x " + childs[9].value+"\""
                         + "\t\t$" + childs[13].value + '\n';
         Singles_txt += child_txt;
+
+        window_room += "\n"+childs[1].value;
+        window_type += "\nSingle Slider";
+        window_size += "\n"+childs[5].value+"\" x " + childs[9].value+"\"";
+        window_price += "\n$" + childs[13].value;
         total_price += parseFloat(childs[13].value);
 
     }
@@ -143,6 +174,11 @@ function createDoc(){
         var child_txt = childs[1].value + "\t\t Double Slider \t\t  " + childs[5].value+"\" x " + childs[9].value+"\""
                         + "\t\t$" + childs[13].value + '\n';
         Doubles_txt += child_txt;
+
+        window_room += "\n"+childs[1].value;
+        window_type += "\nDouble Slider";
+        window_size += "\n"+childs[5].value+"\" x " + childs[9].value+"\"";
+        window_price += "\n$" + childs[13].value;
         total_price += parseFloat(childs[13].value);
 
     }
@@ -155,6 +191,11 @@ function createDoc(){
         var child_txt = childs[1].value + "\t\t Single Hung \t\t\t" + childs[5].value+"\" x " + childs[9].value+"\""
                         + "\t\t$" + childs[13].value + '\n';
         Singleh_txt += child_txt;
+
+        window_room += "\n"+childs[1].value;
+        window_type += "\nSingle Hung";
+        window_size += "\n"+childs[5].value+"\" x " + childs[9].value+"\"";
+        window_price += "\n$" + childs[13].value;
         total_price += parseFloat(childs[13].value);
 
     }
@@ -167,6 +208,11 @@ function createDoc(){
         var child_txt = childs[1].value + "\t\t Double Hung \t\t  " + childs[5].value+"\" x " + childs[9].value+"\""
                         + "\t\t$" + childs[13].value + '\n';
         Doubleh_txt += child_txt;
+
+        window_room += "\n"+childs[1].value;
+        window_type += "\nDouble Hung";
+        window_size += "\n"+childs[5].value+"\" x " + childs[9].value+"\"";
+        window_price += "\n$" + childs[13].value;
         total_price += parseFloat(childs[13].value);
 
     }
@@ -177,6 +223,10 @@ function createDoc(){
         var child_txt = childs[1].value + "\t\t\t\t" + childs[5].value+"\" x " + childs[9].value+"\""
                         + "\t\t$" + childs[13].value + '\n';
         Door_txt += child_txt;
+
+        door_location += "\n"+childs[1].value;
+        door_size += "\n"+childs[5].value+"\" x " + childs[9].value+"\"";
+        door_price += "\n$" + childs[13].value;
         total_price += parseFloat(childs[13].value);
 
     }
@@ -194,26 +244,44 @@ function createDoc(){
         window_txt="\n\nWindows";
     }
 
-
+    var GST = total_price * (0.05);
+    
+    var grand_total = GST + total_price;
+    GST = GST.toFixed(2);
+    grand_total = grand_total.toFixed(2);
     var doc = {
         info: {
-            title: cus_name+ ' Window Quote'
+            title: cus_name+ ' Window Quote',
         },
         content:
         [
             {text: "WINDOW QUOTE", style: "header"},
             {text: "customer: " + cus_name, fontSize: 16},
             {text: "email: " + cus_email, fontSize: 16},
-            {text: window_txt, style: "subheader"},
-            {text: Casement_txt, fontSize: 12},
-            {text: Awning_txt, fontSize: 12},
-            {text: Singles_txt, fontSize: 12},
-            {text: Doubles_txt, fontSize: 12},
-            {text: Singleh_txt, fontSize: 12},
-            {text: Doubleh_txt, fontSize: 12},
-            {text: door, style: "subheader"},
-            {text: Door_txt, fontSize: 12},
-            {text: "Total Price: $" + total_price, style: "price"}
+            {text: "\n\nWindows", style: "subheader"},
+            {
+                table: {
+                    widths: [100, 100, '*', 80],
+                    body: [
+                        ['Room', 'Window Type', 'Size', 'Price'],
+                        [window_room, window_type, window_size, window_price]
+                    ]
+                }
+            },
+
+            {text: "\n\n Doors", style: "subheader"},
+            {
+                table: {
+                    widths: [200,'*', 80],
+                    body: [
+                        ['Location', 'Size', 'Price'],
+                        [door_location, door_size, door_price]
+                    ]
+                }
+            },
+            {text: "Price: $" + total_price, style: "price"},
+            {text: "GST (5%): $" + GST, style: "price"},
+            {text: "Total Price: $" + grand_total, style: "price"}
         ],
         styles:{
             header: {
