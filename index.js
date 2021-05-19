@@ -8,13 +8,27 @@ $(document) .ready(function(){
     <div class="new-input">
 
     <select name="room">
-        <option value="Living Room"> Living Room </option>
-        <option value="Dining Room"> Dining Room </option>
-        <option value="Master Bedroom"> Master Bedroom </option>
-        <option value="Bedroom"> Bedroom </option>
-        <option value="Bonus Room"> Bonus Room </option>
-    
+        <option value="1"> Living Room </option>
+        <option value="2"> Kitchen </option>
+        <option value="3"> Office </option>
+        <option value="4"> Dining Room </option>
+        <option value="5"> Master Bedroom </option>
+        <option value="6"> Bedroom </option>
+        <option value="7"> Bonus Room </option>
     </select>
+
+    <select name="window">
+        <option value="Picture"> Picture </option>
+        <option value="L.Casement"> Casement Left </option>
+        <option value="R.Casement"> Casement Right </option>
+        <option value="Awning"> Awning </option>
+        <option value="Single Slider"> Single Slider </option>
+        <option value="Double Slider"> Double Slider </option>
+        <option value="Single Hung"> Single Hung </option>
+        <option value="Double Hung"> Double Hung </option>
+
+    </select>
+
         <label>Size</label>
         <input type="number" name="num1" value="" required>
         <label>x</label>
@@ -24,6 +38,9 @@ $(document) .ready(function(){
 
         <button class="remove"> Remove </button>
     </div>`;
+
+
+    
 
     //door input field
     var NewInputField2=`
@@ -34,6 +51,14 @@ $(document) .ready(function(){
         <option value="Back Door"> Back Door </option>
         <option value="Garage Door"> Garage Door </option>
     </select>
+
+    <select name="door">
+    <option value="Single"> Single Door </option>
+    <option value="Door w/ Side Light"> Door w/ Side Light </option>
+    <option value="Door w/ Double Side Light"> Door w/ Double Side Light </option>
+    <option value="Double"> Double Door </option>
+    </select>
+
         <label>Size</label>
         <input type="number" name="num1" value="" required>
         <label>x</label>
@@ -43,6 +68,8 @@ $(document) .ready(function(){
 
         <button class="remove"> Remove </button>
     </div>`;
+
+
 
     $(document).on('click','.window_container .add', function(e){
         e.preventDefault();
@@ -98,144 +125,76 @@ function createDoc(){
     var door_size = "";
     var door_price = "";
 
-
-
     var total_price = 0;
 
-    var windows = false;
+    var window_query = document.querySelectorAll('.windows_container .new-input');
 
-    var picture_query = document.querySelectorAll('.picture_container .new-input');
-    for( i = 0; i < picture_query.length; i++){
-        windows = true;
-        var childs = picture_query[i].childNodes;
+    let window_arr = Array.from( window_query);
 
-        // var child_txt = childs[1].value + "\t\t Awning \t\t\t\t\t " + childs[5].value+"\" x " + childs[9].value+"\""
-        //                 + "\t\t$" + childs[13].value + '\n';
-        // Awning_txt += child_txt;
+    console.log("--------- ARRAY BEFORE SORT -------------\n" + window_arr);
 
-        window_room += "\n"+childs[1].value;
-        window_type += "\nPicture";
-        window_size += "\n"+childs[5].value+"\" x " + childs[9].value+"\"";
-        window_price += "\n$" + childs[13].value;
+    window_arr.forEach((e) => {
+        var e_childs = e.childNodes;
+        console.log(e_childs[1].value);
+    });
 
-        total_price += parseFloat(childs[13].value);
+    //time to sort
+    window_arr.sort((a, b) => {
+        var a_childs = a.childNodes;
+        var b_childs = b.childNodes;
+        //console.log("value in a and b are: " + a_childs[1].value + " " + b_childs[1].value);
+        return  parseInt(a_childs[1].value) - parseInt(b_childs[1].value);
+    });
 
-    }
+    console.log("--------- ARRAY AFTER SORT -------------\n" + window_arr);
 
-    //loop to get all casement form information
-    for( i = 0; i < case_length; i++){
-        windows = true;
-        var childs = case_query[i].childNodes;
-        console.log("This is the text in child[1]:" + childs[1].value);
-        console.log("This is the text in child[3]:" + childs[3].value);
-        //first dimension
-        console.log("This is the text in child[5]:" + childs[5].value);
-        //2nd dimension
-        console.log("This is the text in child[9]:" + childs[9].value);
+    //LOOP FOR ALL WINDOWS 
+    window_arr.forEach((e) => {
+        var e_childs = e.childNodes;
+
+        var e_room_val = parseInt(e_childs[1].value);
+
+        //room 
+        console.log(e_childs[1].value + " " + (e_childs[1].options[e_childs[1].selectedIndex].text));
+        //window type
+        console.log("3rd index " + (e_childs[3].value));
+        //first measurement
+        console.log("7th index " + (e_childs[7].value));
+        //2nd measurement
+        console.log("11th index " + (e_childs[11].value));
         //price
-        console.log("This is the text in child[13]:" + childs[13].value);
+        console.log("15th index " + (e_childs[15].value));
 
-        var child_txt = childs[1].value + "\t\t Casement \t\t\t\t" + childs[5].value+"\" x " + childs[9].value+"\""
-                        + "\t\t$" + childs[13].value + '\n';
 
-        window_room += "\n"+childs[1].value;
-        window_type += "\nCasement";
-        window_size += "\n"+childs[5].value+"\" x " + childs[9].value+"\"";
-        window_price += "\n$" + childs[13].value;
+        window_room +="\n"+e_childs[1].options[e_childs[1].selectedIndex].text;
+        window_type += "\n"+e_childs[3].value;
+        window_size += "\n"+e_childs[7].value+"\" x " + e_childs[11].value+"\"";
 
-        Casement_txt += child_txt;
-        total_price += parseFloat(childs[13].value);
+        //These conditions check for user inputted price, if not, price is calculated
+        if(e_childs[15].value.length == 0){
+            var width = parseFloat(e_childs[7].value);
+            var length = parseFloat(e_childs[11].value);
 
-    }
+            var sq_ft = (width * length)/144;
+            //ADD SWITCH STATEMENT FOR CHOOSING DIFFERENT CALCULATIONS
 
-    //loop to get all awning form information
-    var awn_query = document.querySelectorAll('.Awning_container .new-input');
-    for( i = 0; i < awn_query.length; i++){
-        windows = true;
-        var childs = awn_query[i].childNodes;
+            var calc_price = sq_ft * 60;
+            total_price += calc_price;
 
-        var child_txt = childs[1].value + "\t\t Awning \t\t\t\t\t " + childs[5].value+"\" x " + childs[9].value+"\""
-                        + "\t\t$" + childs[13].value + '\n';
-        Awning_txt += child_txt;
+            calc_price = calc_price.toFixed(2);
+            window_price += "\n$" + calc_price;
+            
 
-        window_room += "\n"+childs[1].value;
-        window_type += "\nAwning";
-        window_size += "\n"+childs[5].value+"\" x " + childs[9].value+"\"";
-        window_price += "\n$" + childs[13].value;
+        } else{
+            window_price += "\n$" + e_childs[15].value;
+            total_price += parseFloat(e_childs[15].value);
+        }
 
-        total_price += parseFloat(childs[13].value);
-
-    }
-
-    //loop to get all Single Slider form information
-    var singles_query = document.querySelectorAll('.singles_container .new-input');
-    for( i = 0; i < singles_query.length; i++){
-        windows = true;
-        var childs = singles_query[i].childNodes;
-        var child_txt = childs[1].value + "\t\t Single Slider \t\t\t" + childs[5].value+"\" x " + childs[9].value+"\""
-                        + "\t\t$" + childs[13].value + '\n';
-        Singles_txt += child_txt;
-
-        window_room += "\n"+childs[1].value;
-        window_type += "\nSingle Slider";
-        window_size += "\n"+childs[5].value+"\" x " + childs[9].value+"\"";
-        window_price += "\n$" + childs[13].value;
-        total_price += parseFloat(childs[13].value);
-
-    }
-
-        //loop to get all Double Slider form information
-    var doubles_query = document.querySelectorAll('.doubles_container .new-input');
-    for( i = 0; i < doubles_query.length; i++){
-        windows = true;
-        var childs = doubles_query[i].childNodes;
-        var child_txt = childs[1].value + "\t\t Double Slider \t\t  " + childs[5].value+"\" x " + childs[9].value+"\""
-                        + "\t\t$" + childs[13].value + '\n';
-        Doubles_txt += child_txt;
-
-        window_room += "\n"+childs[1].value;
-        window_type += "\nDouble Slider";
-        window_size += "\n"+childs[5].value+"\" x " + childs[9].value+"\"";
-        window_price += "\n$" + childs[13].value;
-        total_price += parseFloat(childs[13].value);
-
-    }
-
-    //loop to get all Double Slider form information
-    var singleh_query = document.querySelectorAll('.singleh_container .new-input');
-    for( i = 0; i < singleh_query.length; i++){
-        windows = true;
-        var childs = singleh_query[i].childNodes;
-        var child_txt = childs[1].value + "\t\t Single Hung \t\t\t" + childs[5].value+"\" x " + childs[9].value+"\""
-                        + "\t\t$" + childs[13].value + '\n';
-        Singleh_txt += child_txt;
-
-        window_room += "\n"+childs[1].value;
-        window_type += "\nSingle Hung";
-        window_size += "\n"+childs[5].value+"\" x " + childs[9].value+"\"";
-        window_price += "\n$" + childs[13].value;
-        total_price += parseFloat(childs[13].value);
-
-    }
-
-    //loop to get all Double Slider form information
-    var doubleh_query = document.querySelectorAll('.doubleh_container .new-input');
-    for( i = 0; i < doubleh_query.length; i++){
-        windows = true;
-        var childs = doubleh_query[i].childNodes;
-        var child_txt = childs[1].value + "\t\t Double Hung \t\t  " + childs[5].value+"\" x " + childs[9].value+"\""
-                        + "\t\t$" + childs[13].value + '\n';
-        Doubleh_txt += child_txt;
-
-        window_room += "\n"+childs[1].value;
-        window_type += "\nDouble Hung";
-        window_size += "\n"+childs[5].value+"\" x " + childs[9].value+"\"";
-        window_price += "\n$" + childs[13].value;
-        total_price += parseFloat(childs[13].value);
-
-    }
+    });
+ 
     //loop to get all Door form information
     var door_query = document.querySelectorAll('.doors_container .new-input');
+
     for( i = 0; i < door_query.length; i++){
         var childs = door_query[i].childNodes;
         var child_txt = childs[1].value + "\t\t\t\t" + childs[5].value+"\" x " + childs[9].value+"\""
@@ -249,25 +208,15 @@ function createDoc(){
 
     }
 
-    console.log(case_length);
-    console.log(Casement_txt);
-
-    var door="";
-    var window_txt="";
-    if(door_query.length > 0){
-        door="\n\nDoors";
-    }
-
-    if(windows){
-        window_txt="\n\nWindows";
-    }
 
     var GST = total_price * (0.05);
     
     var grand_total = GST + total_price;
+
     GST = GST.toFixed(2);
     grand_total = grand_total.toFixed(2);
     total_price = total_price.toFixed(2);
+    
     var doc = {
         info: {
             title: cus_name+ ' Window Quote',
@@ -324,9 +273,9 @@ function createDoc(){
         }
     }
 
-    var win = window.open('hello', '_blank');
+   var win = window.open('hello', '_blank');
 
-    createPdf(doc).open({}, win);
+   createPdf(doc).open({}, win);
 
 }
 

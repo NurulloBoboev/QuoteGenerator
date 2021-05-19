@@ -93,6 +93,46 @@ input::-webkit-inner-spin-button {
     margin-bottom: 2vh;
 }
 
+.slidingdoor_container{
+    margin-top: 1vh;
+    width:min(85vw, 80%);
+}
+
+.slidingdoor_container label{
+    font-weight: bold;
+    font-size: 24px;
+    background: #ff2525;
+    color: white;
+    padding: 8px;
+    border-radius: 8px;
+    margin-bottom: 2vh;
+}
+
+.options_container{
+    margin-top: 1vh;
+    width:min(85vw, 80%);
+}
+
+.options_container label{
+    font-weight: bold;
+    font-size: 24px;
+    background: #ff2525;
+    color: white;
+    padding: 8px;
+    border-radius: 8px;
+    margin-bottom: 2vh;
+}
+.options{
+    margin-top: 2vh;
+}
+.options label{
+    background: none;
+    color: black;
+    margin-top: 5vh;
+    margin-bottom: auto;
+    font-size: min(4.0vw, 20px);
+}
+
 .new-input{
     display:flex;
     flex-direction: row;
