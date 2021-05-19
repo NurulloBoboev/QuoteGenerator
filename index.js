@@ -249,6 +249,7 @@ function createDoc(){
     var grand_total = GST + total_price;
     GST = GST.toFixed(2);
     grand_total = grand_total.toFixed(2);
+    total_price = total_price.toFixed(2);
     var doc = {
         info: {
             title: cus_name+ ' Window Quote',
