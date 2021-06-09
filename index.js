@@ -40,10 +40,29 @@ $(document) .ready(function(){
     </div>`;
 
 
+    //screendoor input field
+    var NewInputField2=`
+    <div class="new-input">
+
+        <select name="room">
+            <option value="Patio"> Patio </option>
+        </select>
+
+        <select name="door">
+            <option value="5"> 5' </option>
+            <option value="6"> 6' </option>
+            <option value="8"> 8' </option>
+        </select>
+
+        <label>Price $</label>
+        <input type="number" name="price" required>
+
+        <button class="remove"> Remove </button>
+    </div>`;
     
 
     //door input field
-    var NewInputField2=`
+    var NewInputField3=`
     <div class="new-input">
 
     <select name="room">
@@ -76,9 +95,14 @@ $(document) .ready(function(){
         $(this).parent().find('.new_window_info').append(NewInputField1);
     });
 
-    $(document).on('click','.door_container .add', function(e){
+    $(document).on('click','.slidingdoor_container .add', function(e){
         e.preventDefault();
         $(this).parent().find('.new_window_info').append(NewInputField2);
+    });
+
+    $(document).on('click','.door_container .add', function(e){
+        e.preventDefault();
+        $(this).parent().find('.new_window_info').append(NewInputField3);
     });
 
     $(document).on('click','.remove', function(e){
@@ -191,6 +215,46 @@ function createDoc(){
         }
 
     });
+
+    //loop to get sliding door info
+    var slidingdoor_query = document.querySelectorAll('.slidingdoor_container .new-input');
+
+    for( i = 0; i < slidingdoor_query.length; i++){
+        var childs = slidingdoor_query[i].childNodes;
+        // var child_txt = childs[1].value + "\t\t\t\t" + childs[5].value+"\" x " + childs[9].value+"\""
+        //                 + "\t\t$" + childs[13].value + '\n';
+        
+        // Door_txt += child_txt;
+
+        console.log(childs[1].value);
+        console.log(childs[3].value);
+        var selector = parseInt(childs[3].value);
+        console.log("the selector is:" + selector);
+
+         door_location += "\n"+childs[1].value;
+         door_size += "\n"+childs[3].value + " \' ";
+
+         switch(selector){
+            case 5:
+                door_price+= "\n$" + 1680;
+                total_price += 1680;
+                break;
+            case 6:
+                door_price+= "\n$" + 1780;
+                total_price += 1780;
+                break;
+
+            case 8:
+                door_price+= "\n$" + 2200;
+                total_price += 2200;
+                break;
+         }
+
+        // total_price += parseFloat(childs[13].value);
+
+    }
+
+
  
     //loop to get all Door form information
     var door_query = document.querySelectorAll('.doors_container .new-input');
@@ -207,7 +271,6 @@ function createDoc(){
         total_price += parseFloat(childs[13].value);
 
     }
-
 
     var GST = total_price * (0.05);
     
