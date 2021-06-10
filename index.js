@@ -146,6 +146,7 @@ function createDoc(){
 
     //Strings for each colun of information for Doors
     var door_location = "";
+    var door_type = "";
     var door_size = "";
     var door_price = "";
 
@@ -228,26 +229,37 @@ function createDoc(){
 
         console.log(childs[1].value);
         console.log(childs[3].value);
+        //price
+        console.log(childs[7].value);
+
+
         var selector = parseInt(childs[3].value);
         console.log("the selector is:" + selector);
 
          door_location += "\n"+childs[1].value;
+         door_type += "\n" + "Sliding";
          door_size += "\n"+childs[3].value + " \' ";
 
-         switch(selector){
-            case 5:
-                door_price+= "\n$" + 1680;
-                total_price += 1680;
-                break;
-            case 6:
-                door_price+= "\n$" + 1780;
-                total_price += 1780;
-                break;
-
-            case 8:
-                door_price+= "\n$" + 2200;
-                total_price += 2200;
-                break;
+        if(childs[7].value.length ==0 ){
+            switch(selector){
+                case 5:
+                    door_price+= "\n$" + 1680;
+                    total_price += 1680;
+                    break;
+                case 6:
+                    door_price+= "\n$" + 1780;
+                    total_price += 1780;
+                    break;
+    
+                case 8:
+                    door_price+= "\n$" + 2200;
+                    total_price += 2200;
+                    break;
+             }
+        }
+         else{
+             door_price += "\n$" + parseFloat(childs[7].value);
+             total_price += parseFloat(childs[7].value)
          }
 
         // total_price += parseFloat(childs[13].value);
@@ -257,18 +269,20 @@ function createDoc(){
 
  
     //loop to get all Door form information
-    var door_query = document.querySelectorAll('.doors_container .new-input');
+    var door_query = document.querySelectorAll('.door_container .new-input');
 
     for( i = 0; i < door_query.length; i++){
         var childs = door_query[i].childNodes;
-        var child_txt = childs[1].value + "\t\t\t\t" + childs[5].value+"\" x " + childs[9].value+"\""
-                        + "\t\t$" + childs[13].value + '\n';
-        Door_txt += child_txt;
+        // var child_txt = childs[1].value + "\t\t\t\t" + childs[5].value+"\" x " + childs[9].value+"\""
+        //                 + "\t\t$" + childs[13].value + '\n';
+        // Door_txt += child_txt;
+
 
         door_location += "\n"+childs[1].value;
-        door_size += "\n"+childs[5].value+"\" x " + childs[9].value+"\"";
-        door_price += "\n$" + childs[13].value;
-        total_price += parseFloat(childs[13].value);
+        door_type += "\n" + childs[3].value;
+        door_size += "\n"+childs[7].value+"\" x " + childs[11].value+"\"";
+        door_price += "\n$" + childs[15].value;
+        total_price += parseFloat(childs[15].value);
 
     }
 
@@ -295,7 +309,7 @@ function createDoc(){
             {text: "\n\nWindows", style: "subheader"},
             {
                 table: {
-                    widths: [100, 100, '*', 80],
+                    widths: [100, 150, '*', 80],
                     body: [
                         ['Room', 'Window Type', 'Size', 'Price'],
                         [window_room, window_type, window_size, window_price]
@@ -306,10 +320,10 @@ function createDoc(){
             {text: "\n\n Doors", style: "subheader"},
             {
                 table: {
-                    widths: [210, '*', 80],
+                    widths: [100, 150, '*', 80],
                     body: [
-                        ['Location', 'Size', 'Price'],
-                        [door_location, door_size, door_price]
+                        ['Location','Door Type', 'Size', 'Price'],
+                        [door_location, door_type, door_size, door_price]
                     ]
                 }
             },
